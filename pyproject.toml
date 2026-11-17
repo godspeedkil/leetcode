@@ -1,0 +1,44 @@
+[project]
+name = "leetcode"
+version = "0.1.0"
+description = "My LeetCode solutions, with tests."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+new = "lc.new:main"
+
+[dependency-groups]
+dev = ["pytest", "ruff", "pre-commit"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["lc"]
+
+# --- pytest -----------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["problems", "tests"]
+# Problem files are named like 0001_two_sum.py, so collect every .py file
+# and import by path (those names aren't valid module identifiers).
+python_files = ["*.py"]
+addopts = ["--import-mode=importlib", "-q"]
+
+# --- ruff -------------------------------------------------------------------
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # import sorting
+    "UP",  # modern Python syntax
+    "B",   # common bugs
+    "SIM", # simplifications
+]
