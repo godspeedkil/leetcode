@@ -27,6 +27,12 @@ import pytest
 
 
 class Solution:
+    """
+    Approach:
+
+    Time:
+    Space:
+    """
     def solve(self):
         pass
 
